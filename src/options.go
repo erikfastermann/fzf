@@ -143,6 +143,7 @@ const (
 
 type previewOpts struct {
 	command  string
+	command2 string
 	position windowPosition
 	size     sizeSpec
 	hidden   bool
@@ -236,7 +237,7 @@ func defaultOptions() *Options {
 		ToggleSort:  false,
 		Expect:      make(map[int]string),
 		Keymap:      make(map[int][]action),
-		Preview:     previewOpts{"", posRight, sizeSpec{50, true}, false, false},
+		Preview:     previewOpts{"", "", posRight, sizeSpec{50, true}, false, false},
 		PrintQuery:  false,
 		ReadZero:    false,
 		Printer:     func(str string) { fmt.Println(str) },
@@ -767,6 +768,8 @@ func parseKeymap(keymap map[int][]action, str string) {
 				appendAction(actTogglePreview)
 			case "toggle-preview-wrap":
 				appendAction(actTogglePreviewWrap)
+			case "toggle-preview-cmd":
+				appendAction(actTogglePreviewCmd)
 			case "toggle-sort":
 				appendAction(actToggleSort)
 			case "preview-up":
@@ -1137,6 +1140,8 @@ func parseOptions(opts *Options, allArgs []string) {
 				nextString(allArgs, &i, "number of header lines required"))
 		case "--preview":
 			opts.Preview.command = nextString(allArgs, &i, "preview command required")
+		case "--preview2":
+			opts.Preview.command2 = nextString(allArgs, &i, "preview command required")
 		case "--no-preview":
 			opts.Preview.command = ""
 		case "--preview-window":

@@ -213,6 +213,7 @@ const (
 	actToggleSort
 	actTogglePreview
 	actTogglePreviewWrap
+	actTogglePreviewCmd
 	actPreviewUp
 	actPreviewDown
 	actPreviewPageUp
@@ -1708,6 +1709,22 @@ func (t *Terminal) Loop() {
 				if t.hasPreviewWindow() {
 					t.preview.wrap = !t.preview.wrap
 					req(reqPreviewRefresh)
+				}
+			case actTogglePreviewCmd:
+				if t.hasPreviewer() {
+					currentCmd := t.preview.command
+					t.preview.command = t.preview.command2
+					t.preview.command2 = currentCmd
+					t.tui.Clear()
+					t.resizeWindows()
+					if t.previewer.enabled {
+						valid, list := t.buildPlusList(t.preview.command, false)
+						if valid {
+							t.cancelPreview()
+							t.previewBox.Set(reqPreviewEnqueue, list)
+						}
+					}
+					req(reqPrompt, reqList, reqInfo, reqHeader)
 				}
 			case actToggleSort:
 				t.sort = !t.sort
