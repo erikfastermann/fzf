@@ -536,6 +536,13 @@ You can customize the size and position of the preview window using
 fzf --height 40% --reverse --preview 'file {}' --preview-window down:1
 ```
 
+You can supply a second preview command using the `--preview2` option
+and then switch between them with the `toggle-preview-cmd` binding.
+
+```bash
+fzf --preview 'cat {}' --preview2 'head {}' --bind 'ctrl-t:toggle-preview-cmd'
+```
+
 For more advanced examples, see [Key bindings for git with fzf][fzf-git]
 ([code](https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236)).
 

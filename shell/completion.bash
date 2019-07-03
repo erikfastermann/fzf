@@ -81,6 +81,7 @@ _fzf_opts_completion() {
     --history
     --history-size
     --preview
+    --preview2
     --preview-window
     -q --query
     -1 --select-1

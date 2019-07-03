@@ -320,6 +320,14 @@ Preview window will be updated even when there is no match for the current
 query if any of the placeholder expressions evaluates to a non-empty string.
 .RE
 .TP
+.BI "--preview2=" "COMMAND"
+Add a second preview command that can be toggled with the binding
+\fBtoggle-preview-cmd\fR.
+
+.RS
+e.g. \fBfzf --preview 'cat {}' --preview2 'head {}' --bind 'ctrl-t:toggle-preview-cmd'\fR
+.RE
+.TP
 .BI "--preview-window=" "[POSITION][:SIZE[%]][:wrap][:hidden]"
 Determine the layout of the preview window. If the argument ends with
 \fB:hidden\fR, the preview window will be hidden by default until
@@ -572,6 +580,7 @@ triggered whenever the query string is changed.
     \fBtoggle-out\fR            (\fB--layout=reverse*\fR ? \fBtoggle+down\fR : \fBtoggle+up\fR)
     \fBtoggle-preview\fR
     \fBtoggle-preview-wrap\fR
+    \fBtoggle-preview-cmd\fR
     \fBtoggle-sort\fR
     \fBtoggle+up\fR             \fIbtab    (shift-tab)\fR
     \fBtop\fR                   (move to the top result)

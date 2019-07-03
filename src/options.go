@@ -73,6 +73,8 @@ const usage = `usage: fzf [options]
 
   Preview
     --preview=COMMAND     Command to preview highlighted line ({})
+    --preview2=COMMAND    Second preview command, switch with binding
+                          preview-toggle-cmd
     --preview-window=OPT  Preview window layout (default: right:50%)
                           [up|down|left|right][:SIZE[%]][:wrap][:hidden]
 
